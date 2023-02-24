@@ -1,0 +1,134 @@
+Assignment 5: Deploying Microservices via Docker Compose
+
+Total points = 20
+
+You will be required to create 2 Dockerfile and 1 docker-compose.yml files.  You will need to show the output of all the Docker and docker-compose commands, plus run the client script (testclient.sh) to demonstrate successful file operations.  Submit only text files showing your work.
+
+This homework will be based on two Go programs named frontend.go and backend.go.  These will be compiled into two binaries; frontend and backend.  There will be 1 frontend and 3 backed microservice binaries running. The frontend will send RPC requests to one of the 3 backends. And each backend will send corresponding RPC responses to the frontend. In addition the 3 backends will each send periodic UDP beacon messages to the frontend, so that the frontend can dynamically discover each of the backends' IP addresses.
+
+These microservices will provide a simple file storage system to create/write, read, list and delete files. The backend microservices provide a distributed storage system, each with their own volume filesystem. The single frontend microservice provides a simple HTTP (over TCP) REST API to perform the file operations and to write a file to a randomly selected backend microservice using the Gorilla framework.  The REST API will have a structured URL and use JSON payloads for a file's contents and related information about it. 
+
+Below is the homework's directory tree that is formed when the HW5.zip archive is unzipped and all
+dynamically created files are built.
+
+.
+├── compose
+│   ├── backend -> ../images/backend    <<-- Link to images subdirectory for the backend microservice.
+│   ├── docker-compose.yml              <<-- YOU NEED TO WRITE THE CONTENTS OF THIS FILE.
+│   └── frontend -> ../images/frontend  <<-- Link to images subdirectory for the frontend microservice.
+├── images
+│   ├── backend
+│   │   ├── Dockerfile    <<-- YOU NEED TO WRITE THE CONTENTS OF THIS FILE.
+│   │   ├── config.txt    <<-- This is copied from the src/etc directory by a buildall.*.sh script.
+│   │   └── files
+│   └── frontend
+│       ├── Dockerfile    <<-- YOU NEED TO WRITE THE CONTENTS OF THIS FILE.
+│       └── config.txt    <<-- This is copied from the src/etc directory by a buildall.*.sh script.
+├── scripts                  <<-- YOU NEED TO RUN THESE SCRIPTS TO SETUP AND BUILD THE CONTAINERS.
+│   ├── buildall.again.sh    <<-- This builds the two images using the 2 dockerfiles after the first time.
+│   ├── buildall.initial.sh  <<-- This builds the two images using the 2 dockerfiles for the first time.
+│   ├── cleanall.sh          <<-- This deletes the two images.
+│   └── setup.sh             <<-- This creates links between compose and images subdirectories.
+└── src
+    ├── backend           
+    │   ├── backend       <<-- This is a dynamically compiled binary created by buildall.*.sh.
+    │   ├── backend.go    <<-- This is the backend microservice source code.
+    │   └── go.mod        <<-- This is dynamically created by buildall.initial.sh script.
+    ├── client
+    │   └── testclient.sh <<-- USE THIS SCRIPT TO SEND REST COMMANDS TO THE FRONTEND MICROSERVICE.
+    ├── contract
+    │   ├── entities.go   <<-- This is used by the rpc protocol communications between microservices.
+    │   └── go.mod        <<-- This is dynamically created by buildall.initial.sh script.
+    ├── etc
+    │   └── config.txt    <<-- This is used to configure network information used by the microservices.
+    ├── frontend
+    │   ├── frontend      <<-- This is a dynamically compiled binary created by buildall.*.sh.
+    │   ├── frontend.go   <<-- This is the frontend microservice.
+    │   ├── go.mod        <<-- This is dynamically created by buildall.initial.sh script.
+    │   └── go.sum        <<-- This is dynamically created by buildall.initial.sh script.
+    ├── gorilla           <<-- This is the Gorilla REST API framework used by frontend microservice.
+    │   ├── context
+    │   │   ├── LICENSE
+    │   │   ├── README.md
+    │   │   ├── context.go
+    │   │   ├── context_test.go
+    │   │   └── doc.go
+    │   └── mux
+    │       ├── AUTHORS
+    │       ├── LICENSE
+    │       ├── README.md
+    │       ├── bench_test.go
+    │       ├── doc.go
+    │       ├── example_authentication_middleware_test.go
+    │       ├── example_cors_method_middleware_test.go
+    │       ├── example_route_test.go
+    │       ├── go.mod
+    │       ├── middleware.go
+    │       ├── middleware_test.go
+    │       ├── mux.go
+    │       ├── mux_httpserver_test.go
+    │       ├── mux_test.go
+    │       ├── old_test.go
+    │       ├── regexp.go
+    │       ├── regexp_test.go
+    │       ├── route.go
+    │       └── test_helpers.go
+    └── lib
+        ├── config.go     <<-- This is used by both microservices to read the config.txt file above.
+        └── go.mod        <<-- This is dynamically created by buildall.initial.sh script.
+
+ 
+
+STEPS:
+1. "Run HW5/scripts/setup.sh"
+2. Create HW5/image/backend/Dockerfile
+3. Create HW5/image/backend/Dockerfile
+4. Run "HW5/scripts/buildall.initial.sh"  (buildall.again.sh can be used for 2nd and later runs)
+5. Create HW5/compose/docker-compose.yml
+   a. Frontend container's entry point is "/dockerclass/frontend".
+      The frontend service must be named "frontend" so that the backend servers can
+      use this DNS name to resolve its IP address.
+   b. Backend container's entry point is "/dockerclass/backend".
+      The backend services should be named "backend1", "backend2", and "backend3".
+   c. Must contain shared bridge network named "dclassnet" 
+      It is of driver type "bridge".  
+      Subnet = 10.0.0.0/24
+      The frontend container must map its port 8888 to the host's port 8888
+   d. Must contain 3 volumes
+      Each is of driver type "local"
+      One per backend container, named "dclassvol1", "dclassvol2", and "dclassvol3". 
+      The mount point inside each backend container is "/files".
+6. Run "docker-compose up &"
+7. Run "HW5/src/client/testclient.sh"
+8. Run "docker container ls".
+9. Run "docker image ls".
+10. Run "docker volume ls".
+11. Run "docker network ls".
+12. Run "docker-compose down"
+13. Run "HW5/scripts/cleanall.sh"
+
+SUBMIT:
+1. docker-compose.yml file
+   See STEPS 5.a,b,c,d above.
+2. Two Dockerfile files, one for backend and the other for frontend images.
+   See STEPS 2 and 3 above.
+3. All text output from STEPS 1-13 above.
+4. And answer the following questions.
+   a. If the 3 backend containers use 1 shared volume what would happen? Would files get mixed up?
+      Submit a modified docker-compose.yml file with only 1 shared volume named "dclassvol".
+      Submit results of running the "HW5/src/client/testclient.sh"
+      Submit the results of "docker container ls".
+      Submit the results of "docker image ls".
+      Submit the results of "docker volume ls".
+      Submit the results of "docker network ls".
+   b. If the shared network is of driver type "host" what would happen?  
+      Could you still run all 3 backends? Explain why or why not?
+      Submit a modified docker-compose.yml file using the "host" network.
+      Submit results of running the "HW5/src/client/testclient.sh"
+      Submit the results of "docker container ls".
+      Submit the results of "docker image ls".
+      Submit the results of "docker volume ls".
+      Submit the results of "docker network ls".
+
+DEBUGGING:
+Use docker exec or docker logs to debug your containers.

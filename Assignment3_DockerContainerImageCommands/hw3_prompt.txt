@@ -1,0 +1,71 @@
+Homework #3: Docker container/image commands
+This homework will be 15 points total, evenly distributed across the questions below.
+
+
+Problem 1. Search the Docker Registry
+Use the CLI to search for "nginx" images and show the output (include the docker command you used).
+Filter to show only official "nginx" images and show the output (include the docker command you used).
+ 
+
+Problem 2. List Tags for an image
+Hit the following url in a browser, curl, or wget: https://registry.hub.docker.com/v1/repositories/nginx/tags  (Links to an external site.). Show the output in a file named "tags" and up load it.
+Docker Hub will also show the available tags for "nginx".  Show a screen shot of the 1st page.
+ 
+
+Problem 3. Pull and list images from the public Docker registry
+Pull the latest "nginx" image.
+Pull the 1.18 version of "nginx".
+ List the images stored locally.  You should have both "nginx" images.
+Show your output (include the docker command you used).
+ 
+
+Problem 4. Run a container
+Run the nginx container in background with it's container port 80 mapped to your host's port 8080. Give it the name "nginx".
+Submit the docker command you used.
+Verify the nginx container is running properly by hitting http://localhost:8080 (Links to an external site.) from your browser. Take a screenshot and submit it.
+ 
+
+Problem 5. List running containers
+List running containers.
+You should see your nginx container running.
+Submit this output (include the docker command you used).
+List the running processes with "ps fax" and show the process tree with your container processes.
+Submit this 2nd output too (include the docker command you used).
+ 
+
+Problem 6. Inspect a container
+Inspect the nginx container.
+Submit the resulting information about your container (include the docker command you used).
+ 
+
+Problem 7. Stop a running container
+Stop the nginx container.
+Verify the nginx container is not running.
+List running containers.
+There should not be any running nginx containers.
+ Submit your resulting output (include the docker command you used).
+Verify nginx is not running by hitting localhost:8080 from your browser. Make sure you do a refresh because your browser may cache the web page. Submit a screen shot of this web page.
+List all containers including stopped containers.
+You should see your nginx container but notice the status is Exited
+Submit your resulting 2nd output too (include the docker command you used).
+ 
+
+Problem 8. Start a stopped container
+Start the stopped nginx container.
+Verify nginx is running
+List running container and submit output (include the docker command you used).
+Hit localhost:8080 from a browser and submit screenshot.
+ 
+
+Problem 9. Run a command in a running container
+List the files in the nginx container.
+You should see a list of files in your terminal.
+Submit your output (include the docker command you used).
+ 
+
+Problem 10. Create a Bash session in a running container
+Start a bash shell in the nginx container.
+Now you can run any commands you want inside your container
+List the files in the container.
+Submit this output (include the docker command you used).
+ 
