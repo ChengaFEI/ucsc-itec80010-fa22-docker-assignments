@@ -36,7 +36,7 @@ Part 2: (10 points)
 3. Perform a Docker build and create an image named "hw4-fortune" with the "latest" tag.
 4. Create a docker-compose.yml with an editor like vi and include the following in it.
    a. A shared volume named "hw4-vol".
-   b. A service/container named "hw4-fortune-s" using image "hw4-fortune" with the "latest" tag. 
+   b. A service/container named "hw4-fortune-s" using image "hw4-fortune" with the "latest" tag.
       It uses the shared volume "hw4-vol" and mounts to it the file path "/var/local/output".
    c. A service/container named "hw4-nginx-s" using and image "nginx" with the "alpine" tag..
       It uses the the shared volume "hw4-vol" and mounts to it the file path "/usr/share/nginx/html".
