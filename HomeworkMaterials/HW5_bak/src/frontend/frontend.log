@@ -1,0 +1,6 @@
+2023/02/26 17:26:03 Starting IP beacon receiveing
+2023/02/26 17:26:03 Frontend server starting on IP:port : with backend server
+2023/02/26 17:26:03 Frontend server listening for HTTP REST on IP:port 172.20.12.63:
+2023/02/26 17:26:03 Listening localIP 172.20.12.63
+2023/02/26 17:26:03 Starting IP beacon receiving on 172.20.12.63
+2023/02/26 17:26:04 Found a new backend server at 0.0.0.0
