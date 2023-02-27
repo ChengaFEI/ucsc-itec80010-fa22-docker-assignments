@@ -1,90 +1,0 @@
-Script started on Tue Nov  1 22:08:34 2022
-
-The default interactive shell is now zsh.
-To update your account to use zsh, please run `chsh -s /bin/zsh`.
-For more details, please visit https://support.apple.com/kb/HT208050.
-[?1034hbash-3.2$ docker --version
-Docker version 20.10.20, build 9fdeb9c
-bash-3.2$ docker run hello-world
-
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
-
-To generate this message, Docker took the following steps:
- 1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
-    (amd64)
- 3. The Docker daemon created a new container from that image which runs the
-    executable that produces the output you are currently reading.
- 4. The Docker daemon streamed that output to the Docker client, which sent it
-    to your terminal.
-
-To try something more ambitious, you can run an Ubuntu container with:
- $ docker run -it ubuntu bash
-
-Share images, automate workflows, and more with a free Docker ID:
- https://hub.docker.com/
-
-For more examples and ideas, visit:
- https://docs.docker.com/get-started/
-
-bash-3.2$ docker run --detach --publish=80:80 --name=webserver nginx
-Unable to find image 'nginx:latest' locally
-latest: Pulling from library/nginx
-
-[1A[2Ke9995326b091: Pulling fs layer [1B
-[1A[2K71689475aec2: Pulling fs layer [1B
-[1A[2Kf88a23025338: Pulling fs layer [1B
-[1A[2K0df440342e26: Pulling fs layer [1B
-[1A[2Keef26ceb3309: Pulling fs layer [1B
-[1A[2K8e3ed6a9e43a: Pulling fs layer [1B[3A[2K0df440342e26: Waiting [3B[2A[2Keef26ceb3309: Waiting [2B[1A[2K8e3ed6a9e43a: Waiting [1B[4A[2Kf88a23025338: Downloading     627B/627B[4B[4A[2Kf88a23025338: Verifying Checksum [4B[4A[2Kf88a23025338: Download complete [4B[6A[2Ke9995326b091: Downloading    327kB/31.42MB[6B[5A[2K71689475aec2: Downloading  261.5kB/25.41MB[5B[6A[2Ke9995326b091: Downloading  654.7kB/31.42MB[6B[5A[2K71689475aec2: Downloading  785.7kB/25.41MB[5B[6A[2Ke9995326b091: Downloading  1.309MB/31.42MB[6B[5A[2K71689475aec2: Downloading  1.571MB/25.41MB[5B[6A[2Ke9995326b091: Downloading   1.96MB/31.42MB[6B[3A[2K0df440342e26: Downloading     759B/959B[3B[3A[2K0df440342e26: Downloading     959B/959B[3B[3A[2K0df440342e26: Verifying Checksum [3B[3A[2K0df440342e26: Download complete [3B[5A[2K71689475aec2: Downloading  2.362MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  2.607MB/31.42MB[6B[5A[2K71689475aec2: Downloading  2.624MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  2.931MB/31.42MB[6B[6A[2Ke9995326b091: Downloading  3.586MB/31.42MB[6B[5A[2K71689475aec2: Downloading  3.418MB/25.41MB[5B[6A[2Ke9995326b091: Downloading   4.23MB/31.42MB[6B[2A[2Keef26ceb3309: Downloading     759B/774B[2B[2A[2Keef26ceb3309: Downloading     774B/774B[2B[2A[2Keef26ceb3309: Verifying Checksum [2B[2A[2Keef26ceb3309: Download complete [2B[5A[2K71689475aec2: Downloading  4.213MB/25.41MB[5B[5A[2K71689475aec2: Downloading  4.475MB/25.41MB[5B[6A[2Ke9995326b091: Downloading   5.54MB/31.42MB[6B[5A[2K71689475aec2: Downloading  5.528MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  6.519MB/31.42MB[6B[5A[2K71689475aec2: Downloading  6.052MB/25.41MB[5B[5A[2K71689475aec2: Downloading  6.839MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  7.502MB/31.42MB[6B[5A[2K71689475aec2: Downloading  7.101MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  8.792MB/31.42MB[6B[5A[2K71689475aec2: Downloading  7.883MB/25.41MB[5B[1A[2K8e3ed6a9e43a: Downloading  1.369kB/1.404kB[1B[1A[2K8e3ed6a9e43a: Downloading  1.404kB/1.404kB[1B[1A[2K8e3ed6a9e43a: Verifying Checksum [1B[1A[2K8e3ed6a9e43a: Download complete [1B[6A[2Ke9995326b091: Downloading  9.755MB/31.42MB[6B[5A[2K71689475aec2: Downloading  8.145MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  10.73MB/31.42MB[6B[5A[2K71689475aec2: Downloading  9.202MB/25.41MB[5B[5A[2K71689475aec2: Downloading  9.984MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  11.71MB/31.42MB[6B[5A[2K71689475aec2: Downloading  10.51MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  12.69MB/31.42MB[6B[5A[2K71689475aec2: Downloading  10.77MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  13.02MB/31.42MB[6B[5A[2K71689475aec2: Downloading  11.56MB/25.41MB[5B[6A[2Ke9995326b091: Downloading     14MB/31.42MB[6B[5A[2K71689475aec2: Downloading  12.34MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  14.99MB/31.42MB[6B[5A[2K71689475aec2: Downloading  12.86MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  16.28MB/31.42MB[6B[5A[2K71689475aec2: Downloading  13.65MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  17.26MB/31.42MB[6B[6A[2Ke9995326b091: Downloading  18.23MB/31.42MB[6B[5A[2K71689475aec2: Downloading  14.17MB/25.41MB[5B[5A[2K71689475aec2: Downloading  14.97MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  19.21MB/31.42MB[6B[5A[2K71689475aec2: Downloading  15.76MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  20.19MB/31.42MB[6B[5A[2K71689475aec2: Downloading  16.54MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  21.17MB/31.42MB[6B[5A[2K71689475aec2: Downloading  17.33MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  22.15MB/31.42MB[6B[5A[2K71689475aec2: Downloading  18.11MB/25.41MB[5B[6A[2Ke9995326b091: Downloading   22.8MB/31.42MB[6B[5A[2K71689475aec2: Downloading  18.91MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  23.77MB/31.42MB[6B[5A[2K71689475aec2: Downloading  19.96MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  24.75MB/31.42MB[6B[5A[2K71689475aec2: Downloading  21.01MB/25.41MB[5B[5A[2K71689475aec2: Downloading  22.06MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  25.73MB/31.42MB[6B[5A[2K71689475aec2: Downloading  23.11MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  26.38MB/31.42MB[6B[5A[2K71689475aec2: Downloading   23.9MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  27.04MB/31.42MB[6B[5A[2K71689475aec2: Downloading  24.69MB/25.41MB[5B[6A[2Ke9995326b091: Downloading  27.69MB/31.42MB[6B[5A[2K71689475aec2: Verifying Checksum [5B[5A[2K71689475aec2: Download complete [5B[6A[2Ke9995326b091: Downloading  28.67MB/31.42MB[6B[6A[2Ke9995326b091: Downloading  29.65MB/31.42MB[6B[6A[2Ke9995326b091: Downloading  30.94MB/31.42MB[6B[6A[2Ke9995326b091: Verifying Checksum [6B[6A[2Ke9995326b091: Download complete [6B[6A[2Ke9995326b091: Extracting  327.7kB/31.42MB[6B[6A[2Ke9995326b091: Extracting  2.621MB/31.42MB[6B[6A[2Ke9995326b091: Extracting  5.898MB/31.42MB[6B[6A[2Ke9995326b091: Extracting   8.52MB/31.42MB[6B[6A[2Ke9995326b091: Extracting   11.8MB/31.42MB[6B[6A[2Ke9995326b091: Extracting  14.42MB/31.42MB[6B[6A[2Ke9995326b091: Extracting  17.04MB/31.42MB[6B[6A[2Ke9995326b091: Extracting  20.64MB/31.42MB[6B[6A[2Ke9995326b091: Extracting  24.58MB/31.42MB[6B[6A[2Ke9995326b091: Extracting  27.85MB/31.42MB[6B[6A[2Ke9995326b091: Extracting  29.16MB/31.42MB[6B[6A[2Ke9995326b091: Extracting  30.15MB/31.42MB[6B[6A[2Ke9995326b091: Extracting  31.13MB/31.42MB[6B[6A[2Ke9995326b091: Extracting  31.42MB/31.42MB[6B[6A[2Ke9995326b091: Pull complete [6B[5A[2K71689475aec2: Extracting  262.1kB/25.41MB[5B[5A[2K71689475aec2: Extracting  2.884MB/25.41MB[5B[5A[2K71689475aec2: Extracting  7.078MB/25.41MB[5B[5A[2K71689475aec2: Extracting  10.49MB/25.41MB[5B[5A[2K71689475aec2: Extracting  14.16MB/25.41MB[5B[5A[2K71689475aec2: Extracting   17.3MB/25.41MB[5B[5A[2K71689475aec2: Extracting  20.71MB/25.41MB[5B[5A[2K71689475aec2: Extracting  23.33MB/25.41MB[5B[5A[2K71689475aec2: Extracting  25.41MB/25.41MB[5B[5A[2K71689475aec2: Pull complete [5B[4A[2Kf88a23025338: Extracting     627B/627B[4B[4A[2Kf88a23025338: Extracting     627B/627B[4B[4A[2Kf88a23025338: Pull complete [4B[3A[2K0df440342e26: Extracting     959B/959B[3B[3A[2K0df440342e26: Extracting     959B/959B[3B[3A[2K0df440342e26: Pull complete [3B[2A[2Keef26ceb3309: Extracting     774B/774B[2B[2A[2Keef26ceb3309: Extracting     774B/774B[2B[2A[2Keef26ceb3309: Pull complete [2B[1A[2K8e3ed6a9e43a: Extracting  1.404kB/1.404kB[1B[1A[2K8e3ed6a9e43a: Extracting  1.404kB/1.404kB[1B[1A[2K8e3ed6a9e43a: Pull complete [1BDigest: sha256:943c25b4b66b332184d5ba6bb18234273551593016c0e0ae906bab111548239f
-Status: Downloaded newer image for nginx:latest
-ba915a7eea05f5e7063b6c3f87044ccf79ed30950fb82a027dc89196d4fa8c3a
-bash-3.2$ docker run --detach --publish=80:80 --name=webserver nginx
-docker: Error response from daemon: Conflict. The container name "/webserver" is already in use by container "ba915a7eea05f5e7063b6c3f87044ccf79ed30950fb82a027dc89196d4fa8c3a". You have to remove (or rename) that container to be able to reuse that name.
-See 'docker run --help'.
-bash-3.2$ docker container ls
-CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                NAMES
-ba915a7eea05   nginx     "/docker-entrypoint.…"   54 seconds ago   Up 54 seconds   0.0.0.0:80->80/tcp   webserver
-bash-3.2$ 
-bash-3.2$ 
-bash-3.2$ 
-bash-3.2$ 
-bash-3.2$ 
-bash-3.2$ 
-bash-3.2$ 
-bash-3.2$ 
-bash-3.2$ 
-bash-3.2$ c[Kdocker container stop webserver
-webserver
-bash-3.2$ docker container ls -a
-CONTAINER ID   IMAGE         COMMAND                  CREATED         STATUS                      PORTS     NAMES
-ba915a7eea05   nginx         "/docker-entrypoint.…"   2 minutes ago   Exited (0) 42 seconds ago             webserver
-fc3d1a00a519   hello-world   "/hello"                 2 minutes ago   Exited (0) 2 minutes ago              intelligent_euclid
-e43702fdd3c4   hello-world   "/hello"                 5 minutes ago   Exited (0) 5 minutes ago              optimistic_chandrasekhar
-bash-3.2$ docker container rm webserver
-webserver
-bash-3.2$ docker img[Kage sl[K[Kls
-REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
-nginx         latest    76c69feac34e   7 days ago      142MB
-hello-world   latest    feb5d9fea6a5   13 months ago   13.3kB
-bash-3.2$ 
-bash-3.2$ 
-bash-3.2$ 
-bash-3.2$ 
-bash-3.2$ docker image rm hgin[K[K[K[Knginx
-Untagged: nginx:latest
-Untagged: nginx@sha256:943c25b4b66b332184d5ba6bb18234273551593016c0e0ae906bab111548239f
-Deleted: sha256:76c69feac34e85768b284f84416c3546b240e8cb4f68acbbe5ad261a8b36f39f
-Deleted: sha256:8b811a30cb94c227fb2ae61a2a1ec1e93381dbef06f9ea6b5c06df4f27651fed
-Deleted: sha256:470cc6f5d954afeb2695504eff0eda9f8da0e1b3b8bde30e74d9c48dbcb99906
-Deleted: sha256:1c277c746c47ba650267f58cc6e1ea430ce726065c79691ce04235d90209caff
-Deleted: sha256:953e18d40076df9e65564241b34cfba85ab1a6c0634c67e92d6a1f633c5b97d9
-Deleted: sha256:f0a780360f49b2b6afc28882ed2399799e6615862e7dc64451fb3688a33fe712
-Deleted: sha256:a12586ed027fafddcddcc63b31671f406c25e43342479fc92a330e7e30d65f2e
-bash-3.2$ 
-bash-3.2$ 
-bash-3.2$ exit
-exit
-
-Script done on Tue Nov  1 22:13:08 2022

@@ -1,5 +1,0 @@
-Result of step 5 proves that the nginx web server is successfully set up.
-Result of step 6 proves that "docker build" successfully make images of hw4-fortune and nginx applications.
-Result of step 7 proves that "docker run" successfully set up containers from images.
-Result of step 8 proves that the shared volume is successfully set up via docker-compose.yml
-Result of step 9 proves that the network is successfully set up and use the default bridge driver.
