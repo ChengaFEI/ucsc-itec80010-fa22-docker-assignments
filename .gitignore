@@ -1,3 +1,9 @@
+### Vagrant ###
+# General 
+.vagrant/
+
+
+
 ### Mac OS ###
 # General 
 .DS_Store
