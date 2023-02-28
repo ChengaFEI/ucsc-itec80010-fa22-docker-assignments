@@ -1,0 +1,24 @@
+cheng@ubuntu-22:~/temp/HW5/compose$ docker-compose up
+Creating network "compose_dclassnet" with driver "host"
+ERROR: only one instance of "host" network is allowed
+
+
+
+cheng@ubuntu-22:~/temp/HW5/compose$ docker container ls 
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+cheng@ubuntu-22:~/temp/HW5/compose$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED             SIZE
+backend      latest    16fdc7de9fcd   About an hour ago   90.3MB
+frontend     latest    670d1a546791   About an hour ago   94MB
+cheng@ubuntu-22:~/temp/HW5/compose$ docker volume ls
+DRIVER    VOLUME NAME
+local     compose_dclassvol
+local     compose_dclassvol1
+local     compose_dclassvol2
+local     compose_dclassvol3
+cheng@ubuntu-22:~/temp/HW5/compose$ docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+1e34a1206ea0   bridge    bridge    local
+a82219c66a9f   host      host      local
+8725d29cd13e   none      null      local
+

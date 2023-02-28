@@ -1,0 +1,35 @@
+version: "3.5"
+services:
+  frontend:
+    image: frontend:latest
+    ports:
+      - "8888:8888"
+    networks:
+      - dclassnet
+  backend1:
+    image: backend:latest
+    networks:
+      - dclassnet
+    volumes:
+      - dclassvol:/files
+  backend2:
+    image: backend:latest
+    networks:
+      - dclassnet
+    volumes:
+      - dclassvol:/files
+  backend3:
+    image: backend:latest
+    networks:
+      - dclassnet
+    volumes:
+      - dclassvol:/files
+networks:
+  dclassnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.0.0/24
+volumes:
+  dclassvol:
+

@@ -1,0 +1,196 @@
+cheng@ubuntu-22:~/temp/HW5/compose$ cd ../src/client
+cheng@ubuntu-22:~/temp/HW5/src/client$ l
+total 16
+drwxrwxr-x 2 cheng cheng 4096 Feb 27 15:57 .
+drwxrwxr-x 9 cheng cheng 4096 Feb 27 15:57 ..
+-rw-rw-r-- 1 cheng cheng 4575 Aug 23  2021 testclient.sh
+cheng@ubuntu-22:~/temp/HW5/src/client$ sh testclient.sh 
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+null
+"10.0.0.3"
+null
+"10.0.0.5"
+null
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, New World!} http://localhost:8888/files/new.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.5"
+["new.txt"]
+"10.0.0.2"
+["new.txt"]
+"10.0.0.3"
+["new.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, Old World!} http://localhost:8888/files/old.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["old.txt","new.txt"]
+"10.0.0.3"
+["old.txt","new.txt"]
+"10.0.0.5"
+["old.txt","new.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, Baby World!} http://localhost:8888/files/baby.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.5"
+["baby.txt","old.txt","new.txt"]
+"10.0.0.2"
+["baby.txt","old.txt","new.txt"]
+"10.0.0.3"
+["baby.txt","old.txt","new.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, Girl World!} http://localhost:8888/files/girl.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","old.txt","new.txt"]
+"10.0.0.3"
+["baby.txt","girl.txt","old.txt","new.txt"]
+"10.0.0.5"
+["baby.txt","girl.txt","old.txt","new.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, Boy World!} http://localhost:8888/files/boy.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","boy.txt","old.txt","new.txt"]
+"10.0.0.3"
+["baby.txt","girl.txt","boy.txt","old.txt","new.txt"]
+"10.0.0.5"
+["baby.txt","girl.txt","boy.txt","old.txt","new.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, Female World!} http://localhost:8888/files/female.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","female.txt","boy.txt","old.txt","new.txt"]
+"10.0.0.3"
+["baby.txt","girl.txt","female.txt","boy.txt","old.txt","new.txt"]
+"10.0.0.5"
+["baby.txt","girl.txt","female.txt","boy.txt","old.txt","new.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, Male World!} http://localhost:8888/files/male.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","female.txt","boy.txt","old.txt","male.txt","new.txt"]
+"10.0.0.3"
+["baby.txt","girl.txt","female.txt","boy.txt","old.txt","male.txt","new.txt"]
+"10.0.0.5"
+["baby.txt","girl.txt","female.txt","boy.txt","old.txt","male.txt","new.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, Male World!} http://localhost:8888/files/cat.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","old.txt","male.txt","new.txt"]
+"10.0.0.3"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","old.txt","male.txt","new.txt"]
+"10.0.0.5"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","old.txt","male.txt","new.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, Male World!} http://localhost:8888/files/dog.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","dog.txt","old.txt","male.txt","new.txt"]
+"10.0.0.3"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","dog.txt","old.txt","male.txt","new.txt"]
+"10.0.0.5"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","dog.txt","old.txt","male.txt","new.txt"]
+---
+curl  http://localhost:8888/files/new.txt
+{"filename":"/files/new.txt","timestamp":"2023-02-27 23:25:00.98609291 +0000 UTC","length":"17","data":"Hello, New World!"}
+---
+curl  http://localhost:8888/files/old.txt
+{"filename":"/files/old.txt","timestamp":"2023-02-27 23:25:01.038092912 +0000 UTC","length":"17","data":"Hello, Old World!"}
+---
+curl  http://localhost:8888/files/baby.txt
+{"filename":"/files/baby.txt","timestamp":"2023-02-27 23:25:01.086092914 +0000 UTC","length":"18","data":"Hello, Baby World!"}
+---
+curl  http://localhost:8888/files/cat.txt
+{"filename":"/files/cat.txt","timestamp":"2023-02-27 23:25:01.342092924 +0000 UTC","length":"18","data":"Hello, Male World!"}
+---
+curl  http://localhost:8888/files/boy.txt
+{"filename":"/files/boy.txt","timestamp":"2023-02-27 23:25:01.194092918 +0000 UTC","length":"17","data":"Hello, Boy World!"}
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","dog.txt","old.txt","male.txt","new.txt"]
+"10.0.0.3"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","dog.txt","old.txt","male.txt","new.txt"]
+"10.0.0.5"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","dog.txt","old.txt","male.txt","new.txt"]
+---
+curl -X DELETE  http://localhost:8888/files/new.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","dog.txt","old.txt","male.txt"]
+"10.0.0.3"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","dog.txt","old.txt","male.txt"]
+"10.0.0.5"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","dog.txt","old.txt","male.txt"]
+---
+curl -X DELETE  http://localhost:8888/files/old.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","dog.txt","male.txt"]
+"10.0.0.3"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","dog.txt","male.txt"]
+"10.0.0.5"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","dog.txt","male.txt"]
+---
+curl -X DELETE  http://localhost:8888/files/male.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.3"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","dog.txt"]
+"10.0.0.5"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","dog.txt"]
+"10.0.0.2"
+["baby.txt","girl.txt","cat.txt","female.txt","boy.txt","dog.txt"]
+---
+curl -X DELETE  http://localhost:8888/files/boy.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","cat.txt","female.txt","dog.txt"]
+"10.0.0.3"
+["baby.txt","girl.txt","cat.txt","female.txt","dog.txt"]
+"10.0.0.5"
+["baby.txt","girl.txt","cat.txt","female.txt","dog.txt"]
+---
+
+
+
+cheng@ubuntu-22:~/temp/HW5/src/client$ docker container ls
+CONTAINER ID   IMAGE             COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+0eac40b6f2ec   backend:latest    "/dockerclass/backend"   3 minutes ago   Up 2 minutes                                               compose_backend1_1
+2ee632844faa   backend:latest    "/dockerclass/backend"   3 minutes ago   Up 2 minutes                                               compose_backend2_1
+0092e2014bf6   backend:latest    "/dockerclass/backend"   3 minutes ago   Up 2 minutes                                               compose_backend3_1
+2c97696948b7   frontend:latest   "/dockerclass/fronte…"   3 minutes ago   Up 2 minutes   0.0.0.0:8888->8888/tcp, :::8888->8888/tcp   compose_frontend_1
+cheng@ubuntu-22:~/temp/HW5/src/client$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED             SIZE
+backend      latest    16fdc7de9fcd   About an hour ago   90.3MB
+frontend     latest    670d1a546791   About an hour ago   94MB
+cheng@ubuntu-22:~/temp/HW5/src/client$ docker volume ls
+DRIVER    VOLUME NAME
+local     compose_dclassvol
+local     compose_dclassvol1
+local     compose_dclassvol2
+local     compose_dclassvol3
+cheng@ubuntu-22:~/temp/HW5/src/client$ docker network ls
+NETWORK ID     NAME                DRIVER    SCOPE
+1e34a1206ea0   bridge              bridge    local
+2c98e59bc0a6   compose_dclassnet   bridge    local
+a82219c66a9f   host                host      local
+8725d29cd13e   none                null      local
+cheng@ubuntu-22:~/temp/HW5/src/client$ 
+

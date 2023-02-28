@@ -1,0 +1,4 @@
+Result of step 5 proves that the docker container is successfully set up and works correctly.
+Result of step 6 proves that "docker build" successfully make an image of app.js application.
+Result pf step 7 proves that "docker run" successfully set up a container from the image.
+

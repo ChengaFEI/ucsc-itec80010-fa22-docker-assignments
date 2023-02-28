@@ -1,0 +1,342 @@
+cheng@ubuntu-22:~/temp/HW5/scripts$ sh buildall.initial.sh
+
+First time building images.
+
+Configuring contract and lib go.mod files.
+go: /home/cheng/temp/HW5/src/contract/go.mod already exists
+go: /home/cheng/temp/HW5/src/lib/go.mod already exists
+
+Creating and configuring frontend go.mod file, in order to use local modules.
+go: /home/cheng/temp/HW5/src/frontend/go.mod already exists
+
+Compiling frontend.go.
+
+Creating and configuring backend go.mod file, in order to use local modules.
+go: /home/cheng/temp/HW5/src/backend/go.mod already exists
+
+Compiling backend.go.
+
+Copying frontend and backend binaries to both images subdirectories.
+/home/cheng/temp/HW5
+
+Copying config.txt to both images subdirectories.
+/home/cheng/temp/HW5
+
+Confirming what is in both images subdirectories.
+../images:
+backend  frontend
+
+../images/backend:
+backend  config.txt  Dockerfile  files
+
+../images/backend/files:
+
+../images/frontend:
+config.txt  Dockerfile	frontend
+
+Building frontend and backend container images.
+[+] Building 0.5s (10/10) FINISHED                                                                                                                                       
+ => [internal] load build definition from Dockerfile                                                                                                                0.0s
+ => => transferring dockerfile: 278B                                                                                                                                0.0s
+ => [internal] load .dockerignore                                                                                                                                   0.0s
+ => => transferring context: 2B                                                                                                                                     0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:latest                                                                                                    0.3s
+ => [internal] load build context                                                                                                                                   0.1s
+ => => transferring context: 8.12MB                                                                                                                                 0.1s
+ => [1/5] FROM docker.io/library/ubuntu:latest@sha256:9a0bdde4188b896a372804be2384015e90e3f84906b750c1a53539b585fbbe7f                                              0.0s
+ => CACHED [2/5] WORKDIR /dockerclass                                                                                                                               0.0s
+ => CACHED [3/5] COPY frontend /dockerclass                                                                                                                         0.0s
+ => CACHED [4/5] COPY config.txt /dockerclass                                                                                                                       0.0s
+ => CACHED [5/5] RUN chmod +x /dockerclass/frontend                                                                                                                 0.0s
+ => exporting to image                                                                                                                                              0.0s
+ => => exporting layers                                                                                                                                             0.0s
+ => => writing image sha256:670d1a546791377b304a41cc9d955e0cb8fb1b5b8ecb4a1b9e7c36ee21bed34e                                                                        0.0s
+ => => naming to docker.io/library/frontend                                                                                                                         0.0s
+[+] Building 0.3s (10/10) FINISHED                                                                                                                                       
+ => [internal] load .dockerignore                                                                                                                                   0.0s
+ => => transferring context: 2B                                                                                                                                     0.0s
+ => [internal] load build definition from Dockerfile                                                                                                                0.0s
+ => => transferring dockerfile: 275B                                                                                                                                0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:latest                                                                                                    0.1s
+ => [internal] load build context                                                                                                                                   0.1s
+ => => transferring context: 6.24MB                                                                                                                                 0.1s
+ => [1/5] FROM docker.io/library/ubuntu:latest@sha256:9a0bdde4188b896a372804be2384015e90e3f84906b750c1a53539b585fbbe7f                                              0.0s
+ => CACHED [2/5] WORKDIR /dockerclass                                                                                                                               0.0s
+ => CACHED [3/5] COPY backend /dockerclass                                                                                                                          0.0s
+ => CACHED [4/5] COPY config.txt /dockerclass                                                                                                                       0.0s
+ => CACHED [5/5] RUN chmod +x /dockerclass/backend                                                                                                                  0.0s
+ => exporting to image                                                                                                                                              0.0s
+ => => exporting layers                                                                                                                                             0.0s
+ => => writing image sha256:16fdc7de9fcd2134a29497c55d73143700eef22532ab35d833d67ad2fde238b8                                                                        0.0s
+ => => naming to docker.io/library/backend                                                                                                                          0.0s
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+backend      latest    16fdc7de9fcd   32 minutes ago   90.3MB
+frontend     latest    670d1a546791   32 minutes ago   94MB
+
+
+
+cheng@ubuntu-22:~/temp/HW5/scripts$ cd ../compose
+cheng@ubuntu-22:~/temp/HW5/compose$ docker compose up
+[+] Running 5/5
+ ⠿ Network compose_dclassnet     Created                                                                                                                            0.1s
+ ⠿ Container compose-backend1-1  Created                                                                                                                            0.2s
+ ⠿ Container compose-frontend-1  Created                                                                                                                            0.2s
+ ⠿ Container compose-backend3-1  Created                                                                                                                            0.2s
+ ⠿ Container compose-backend2-1  Created                                                                                                                            0.3s
+Attaching to compose-backend1-1, compose-backend2-1, compose-backend3-1, compose-frontend-1
+compose-backend3-1  | Backend server IP address is 10.0.0.2
+compose-backend3-1  | Backend server starting on port 2222
+compose-backend3-1  | Starting IP beaconing on 10.0.0.5
+compose-backend3-1  | Going to listen on port 2222
+compose-backend3-1  | Server up and listening on IP:port 10.0.0.2:2222
+compose-backend3-1  | Dialing localIP:remoteIP 10.0.0.2:10.0.0.5
+compose-backend3-1  | Starting UDP beaconing on 10.0.0.5 with payload 10.0.0.2
+compose-backend1-1  | Backend server IP address is 10.0.0.3
+compose-backend1-1  | Backend server starting on port 2222
+compose-backend1-1  | Starting IP beaconing on 10.0.0.5
+compose-backend1-1  | Going to listen on port 2222
+compose-backend1-1  | Dialing localIP:remoteIP 10.0.0.3:10.0.0.5
+compose-backend1-1  | Server up and listening on IP:port 10.0.0.3:2222
+compose-backend1-1  | Starting UDP beaconing on 10.0.0.5 with payload 10.0.0.3
+compose-backend2-1  | Backend server IP address is 10.0.0.4
+compose-backend2-1  | Backend server starting on port 2222
+compose-backend2-1  | Starting IP beaconing on 10.0.0.5
+compose-backend2-1  | Going to listen on port 2222
+compose-backend2-1  | Server up and listening on IP:port 10.0.0.4:2222
+compose-backend2-1  | Dialing localIP:remoteIP 10.0.0.4:10.0.0.5
+compose-backend2-1  | Starting UDP beaconing on 10.0.0.5 with payload 10.0.0.4
+compose-frontend-1  | Starting IP beacon receiveing
+compose-frontend-1  | Frontend server starting on IP:port 172.17.0.3:2222 with backend server
+compose-frontend-1  | Frontend server listening for HTTP REST on IP:port 10.0.0.5:8888
+compose-frontend-1  | Listening localIP 10.0.0.5
+compose-frontend-1  | Starting IP beacon receiving on 10.0.0.5
+
+
+
+cheng@ubuntu-22:~/temp/HW5/compose$ docker container ls 
+CONTAINER ID   IMAGE             COMMAND                  CREATED          STATUS          PORTS                                       NAMES
+689373889f26   frontend:latest   "/dockerclass/fronte…"   41 seconds ago   Up 39 seconds   0.0.0.0:8888->8888/tcp, :::8888->8888/tcp   compose-frontend-1
+f3fdad5f1b4a   backend:latest    "/dockerclass/backend"   41 seconds ago   Up 39 seconds                                               compose-backend1-1
+4105bd2abe1e   backend:latest    "/dockerclass/backend"   41 seconds ago   Up 39 seconds                                               compose-backend2-1
+be1662d8216e   backend:latest    "/dockerclass/backend"   41 seconds ago   Up 39 seconds                                               compose-backend3-1
+cheng@ubuntu-22:~/temp/HW5/compose$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+backend      latest    16fdc7de9fcd   34 minutes ago   90.3MB
+frontend     latest    670d1a546791   34 minutes ago   94MB
+cheng@ubuntu-22:~/temp/HW5/compose$ docker volume ls 
+DRIVER    VOLUME NAME
+local     compose_dclassvol1
+local     compose_dclassvol2
+local     compose_dclassvol3
+cheng@ubuntu-22:~/temp/HW5/compose$ docker network ls
+NETWORK ID     NAME                DRIVER    SCOPE
+1e34a1206ea0   bridge              bridge    local
+b372b745b4c6   compose_dclassnet   bridge    local
+a82219c66a9f   host                host      local
+8725d29cd13e   none                null      local
+cheng@ubuntu-22:~/temp/HW5/compose$ cd ../scripts/
+cheng@ubuntu-22:~/temp/HW5/scripts$ cd ../src/client
+
+
+
+cheng@ubuntu-22:~/temp/HW5/src/client$ sh testclient.sh
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","dog.txt"]
+"10.0.0.3"
+["cat.txt"]
+"10.0.0.4"
+["female.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, New World!} http://localhost:8888/files/new.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.4"
+["female.txt"]
+"10.0.0.2"
+["baby.txt","girl.txt","dog.txt"]
+"10.0.0.3"
+["cat.txt","new.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, Old World!} http://localhost:8888/files/old.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","dog.txt"]
+"10.0.0.3"
+["cat.txt","new.txt"]
+"10.0.0.4"
+["female.txt","old.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, Baby World!} http://localhost:8888/files/baby.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","dog.txt"]
+"10.0.0.3"
+["cat.txt","new.txt"]
+"10.0.0.4"
+["female.txt","old.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, Girl World!} http://localhost:8888/files/girl.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.4"
+["female.txt","old.txt"]
+"10.0.0.2"
+["baby.txt","girl.txt","dog.txt"]
+"10.0.0.3"
+["cat.txt","new.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, Boy World!} http://localhost:8888/files/boy.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","dog.txt"]
+"10.0.0.3"
+["cat.txt","boy.txt","new.txt"]
+"10.0.0.4"
+["female.txt","old.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, Female World!} http://localhost:8888/files/female.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","dog.txt"]
+"10.0.0.3"
+["cat.txt","boy.txt","new.txt"]
+"10.0.0.4"
+["female.txt","old.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, Male World!} http://localhost:8888/files/male.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","dog.txt"]
+"10.0.0.3"
+["cat.txt","boy.txt","new.txt"]
+"10.0.0.4"
+["female.txt","old.txt","male.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, Male World!} http://localhost:8888/files/cat.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.3"
+["cat.txt","boy.txt","new.txt"]
+"10.0.0.4"
+["female.txt","old.txt","male.txt"]
+"10.0.0.2"
+["baby.txt","girl.txt","dog.txt"]
+---
+curl -X POST -H Content-Type: application/json -d {data:Hello, Male World!} http://localhost:8888/files/dog.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.3"
+["cat.txt","boy.txt","new.txt"]
+"10.0.0.4"
+["female.txt","old.txt","male.txt"]
+"10.0.0.2"
+["baby.txt","girl.txt","dog.txt"]
+---
+curl  http://localhost:8888/files/new.txt
+{"filename":"/files/new.txt","timestamp":"2023-02-27 23:01:23.73518623 +0000 UTC","length":"17","data":"Hello, New World!"}
+---
+curl  http://localhost:8888/files/old.txt
+{"filename":"/files/old.txt","timestamp":"2023-02-27 23:01:23.803186233 +0000 UTC","length":"17","data":"Hello, Old World!"}
+---
+curl  http://localhost:8888/files/baby.txt
+{"filename":"/files/baby.txt","timestamp":"2023-02-27 23:01:23.863186235 +0000 UTC","length":"18","data":"Hello, Baby World!"}
+---
+curl  http://localhost:8888/files/cat.txt
+{"filename":"/files/cat.txt","timestamp":"2023-02-27 23:01:24.151186246 +0000 UTC","length":"18","data":"Hello, Male World!"}
+---
+curl  http://localhost:8888/files/boy.txt
+{"filename":"/files/boy.txt","timestamp":"2023-02-27 23:01:23.97118624 +0000 UTC","length":"17","data":"Hello, Boy World!"}
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","dog.txt"]
+"10.0.0.3"
+["cat.txt","boy.txt","new.txt"]
+"10.0.0.4"
+["female.txt","old.txt","male.txt"]
+---
+curl -X DELETE  http://localhost:8888/files/new.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","dog.txt"]
+"10.0.0.3"
+["cat.txt","boy.txt"]
+"10.0.0.4"
+["female.txt","old.txt","male.txt"]
+---
+curl -X DELETE  http://localhost:8888/files/old.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","dog.txt"]
+"10.0.0.3"
+["cat.txt","boy.txt"]
+"10.0.0.4"
+["female.txt","male.txt"]
+---
+curl -X DELETE  http://localhost:8888/files/male.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","dog.txt"]
+"10.0.0.3"
+["cat.txt","boy.txt"]
+"10.0.0.4"
+["female.txt"]
+---
+curl -X DELETE  http://localhost:8888/files/boy.txt
+---
+curl  http://localhost:8888/files
+"10.0.0.2"
+["baby.txt","girl.txt","dog.txt"]
+"10.0.0.3"
+["cat.txt"]
+"10.0.0.4"
+["female.txt"]
+---
+
+
+
+cheng@ubuntu-22:~/temp/HW5/compose$ docker-compose down
+Stopping compose-frontend-1 ... done
+Stopping compose-backend1-1 ... done
+Stopping compose-backend2-1 ... done
+Stopping compose-backend3-1 ... done
+Removing compose-frontend-1 ... done
+Removing compose-backend1-1 ... done
+Removing compose-backend2-1 ... done
+Removing compose-backend3-1 ... done
+Removing network compose_dclassnet
+
+
+
+cheng@ubuntu-22:~/temp/HW5/compose$ cd ../scripts/
+cheng@ubuntu-22:~/temp/HW5/scripts$ sh cleanall.sh
+
+Removing images from Docker local cache.
+Untagged: frontend:latest
+Deleted: sha256:670d1a546791377b304a41cc9d955e0cb8fb1b5b8ecb4a1b9e7c36ee21bed34e
+Untagged: backend:latest
+Deleted: sha256:16fdc7de9fcd2134a29497c55d73143700eef22532ab35d833d67ad2fde238b8
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+
+Deleting binaries and config.txt files Dockerfile build directories.
+../images:
+backend  frontend
+
+../images/backend:
+Dockerfile  files
+
+../images/backend/files:
+
+../images/frontend:
+Dockerfile
+
