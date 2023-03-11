@@ -9,6 +9,8 @@
 \f0\fs56 \cf0 Docker in Depth\
 Final Quiz\
 \
+\
+\
 Question 1:\
 What is a container?\
 Explain it in the context of Linux and the kernel features that make a container exist. I'm expecting a thorough technical answer that includes namespaces and cgroups. Give one or more concrete examples using either Linux tools like nsenter and unshare, or code (go, C, or another programming language).\
@@ -17,19 +19,40 @@ Answer: \
 In the context of Linux, a container is an isolated environment that allows application to run in a self-contained and separated unit. Containers provide a lightweight, portable, and flexible solution for packaging, distributing, and running applications, which don\'92t rely on a full virtual machine.\
 At its core, a container is a set of separated processes that are isolated from the host system and other containers. The isolation is achieved through kernel features, like namespaces and cgroups.\
 Namespaces provide a solution for isolating different aspects/resources of a container\'92s environment, such as the network, process ID, user ID, IPC, and file system. Cgroups are used to control the resource limits and prevent a container to use more resources than allowed.\
-For instance, \
+For instance, we can use Linux commands `nsenter` and `unshare` to create a container with an isolated network namespace. \
+First, we need to create a new directory for the container:\
+mkdir mycontainer\
+Then, we need to assign a network namespace for our new container:\
+unshare	\'97net=/var/run/netns/mycontainer\
+Lastly, we can use `nsenter` command to enter the network namespace to inspect our new container:\
+nsenter	\'97net=/var/run/netns/mycontainer /bin/bash\
+\
+\
 \
 Question 2:\
 Describe the architecture of the Docker system (aka Docker engine) in detail. \
 I'm expecting a thorough explanation down to the process behavior level (fork/exec) and communications between components (gRPC, HTTP REST, or other i/o or networking protocols). You can leave out the Docker Swarm portion of the system.\
 \
+Answer:\
+There are three major components in the architecture of the Docker engine: Docker Daemon, Docker Client, and Container Runtime.\
+First, Docker Daemon is a long-running background process in the host system that listens for incoming requests from Docker Client via a unix socket or a network interface and processes the incoming requests by forking child processes to create or manage images, containers, networks, and volumes. When the Docker Daemon starts up, it initiates various subsystems to manage images, containers, networks, and volumes, such as the image registry, the container runtime, the network driver, and the volume driver.\
+Second, Docker Client is a command-line interface that enables developers to communicate with the Docker Daemon. As long as the Docker Client has network connectivity to the daemon, requests can be sent to and processed by the daemon. The communication between the Docker Client and the Docker Daemon is implemented with the Docker API, which is exposed by the daemon as a REST API over HTTP.\
+Third, Container Runtime is the major subsystem of the Docker engine that starts the container, isolates the resources, and provides access to the required host system resources. At its core, the Container Runtime uses Linux tools `namespaces` and `cgroups` to manage resources. The Docker Daemon uses a gRPC-based API called Containerd API to communicate with the Container Runtime.\
+In terms of process behavior, when the daemon receives an incoming request to start a container via Docker API, the daemon will `fork` a child process for the new container and `exec` the designated container\'92s main process in the newly-created child process.\
+\
+\
+\
 Question 3:\
 Explain the steps of how a container is created. \
 I'm expecting a thorough description of the interactions between the client, daemon, image repository, images, container, os, union file system (like aufs), graph driver and host file system.\
 \
+\
+\
 Question 4:\
 You have two hosts running multiple containers of your application on them. Without using Swarm or Kubernetes, what type of network would you use to communication between them and the Internet?\
 Describe your design and subnets. Remember that we discussed several types of networks, so pick one wisely. I'm expecting technical details with example Docker commands.\
+\
+\
 \
 Question 5:\
 You have two hosts running multiple containers of your application on them. The goal is to use a secure protocol, TLS, between the containers. How would you pass the RSA private and public cryptographic keys to each containers?  (RSA public keys are in a certificate.)\
