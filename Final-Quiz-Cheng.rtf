@@ -46,6 +46,7 @@ Question 3:\
 Explain the steps of how a container is created. \
 I'm expecting a thorough description of the interactions between the client, daemon, image repository, images, container, os, union file system (like aufs), graph driver and host file system.\
 \
+Answer:\
 First, pull images. The Docker client sends the request to the Docker daemon to pull designated images from the image repository, such as Docker Hub or a private registry.\
 Second, create a container. When the image is pulled from Docker Hub, the Docker client will send a request to the Docker daemon to create a new container based on the image. The daemon uses the graph driver to create a writable layer on top of the image\'92s read-only layers. The writable layer will store any changes made to the container during the runtime.\
 Third, configure the container. Then the Docker daemon sets up the container\'92s network, storage, and other configuration settings, such as port bindings and environment variables, using the host system\'92s network and storage driver.\
@@ -59,6 +60,7 @@ Question 4:\
 You have two hosts running multiple containers of your application on them. Without using Swarm or Kubernetes, what type of network would you use to communicate between them and the Internet?\
 Describe your design and subnets. Remember that we discussed several types of networks, so pick one wisely. I'm expecting technical details with example Docker commands.\
 \
+Answer:\
 I will use overlay network driver to communicate containers running on two hosts.\
 First, I will create a new network with the overlay driver:\
 docker network create \'97driver overlay my-network\
@@ -73,4 +75,16 @@ dockerd \'97ip-masq=true\
 Question 5:\
 You have two hosts running multiple containers of your application on them. The goal is to use a secure protocol, TLS, between the containers. How would you pass the RSA private and public cryptographic keys to each containers?  (RSA public keys are in a certificate.)\
 Use one of the techniques for passing secrets to containers that we discussed in class, describe your answer in technical detail with example Docker commands.\
+\
+Answer:\
+First, create the RSA key pair in the host system, the following commands will create two keys \'97 a private key called \'93private_key.pem\'94 and a public key called \'93public_key.pem\'94.\
+openssl genrsa -out private_key.pem 2048\
+openssl asa -in private_key.pem -outform PEM -pubout -out public_key.pem\
+Then, create the Docker secrets, following commands will create two Docker secret files \'97 a private file called \'93private_key\'94 based on private_key.pem and a public file \'93public_key\'94 based on public_key.pem.\
+docker secret create private_key private_key.pem\
+docker secret create public_key public_key.pem\
+Lastly, mount the secret files inside containers.\
+docker run \'97name container1 \'97secret private_key \'97secret public_key my-image:latest\
+docker run \'97name container2 \'97secret private_key \'97secret public_key my-image:latest\
+If an application running inside a container wants to use the secret files, it can load them from the path \'93/run/secrets/<secret-name>\'94.\
 }
