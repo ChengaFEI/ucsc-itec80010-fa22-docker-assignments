@@ -56,8 +56,17 @@ Lastly, cache the image. The Docker daemon also caches images for future use. It
 \
 \
 Question 4:\
-You have two hosts running multiple containers of your application on them. Without using Swarm or Kubernetes, what type of network would you use to communication between them and the Internet?\
+You have two hosts running multiple containers of your application on them. Without using Swarm or Kubernetes, what type of network would you use to communicate between them and the Internet?\
 Describe your design and subnets. Remember that we discussed several types of networks, so pick one wisely. I'm expecting technical details with example Docker commands.\
+\
+I will use overlay network driver to communicate containers running on two hosts.\
+First, I will create a new network with the overlay driver:\
+docker network create \'97driver overlay my-network\
+Then, I will run two containers using this network:\
+docker run \'97name container1 \'97network my-network my-image:latest\
+docker run \'97name container2 \'97network my-network my-image:latest\
+Lastly, I will use the Docker\'92s built-in NAT(Network Address Translation) functionality to connect my-network to the Internet:\
+dockerd \'97ip-masq=true\
 \
 \
 \
