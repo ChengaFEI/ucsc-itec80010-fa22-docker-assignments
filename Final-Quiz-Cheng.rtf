@@ -46,6 +46,13 @@ Question 3:\
 Explain the steps of how a container is created. \
 I'm expecting a thorough description of the interactions between the client, daemon, image repository, images, container, os, union file system (like aufs), graph driver and host file system.\
 \
+First, pull images. The Docker client sends the request to the Docker daemon to pull designated images from the image repository, such as Docker Hub or a private registry.\
+Second, create a container. When the image is pulled from Docker Hub, the Docker client will send a request to the Docker daemon to create a new container based on the image. The daemon uses the graph driver to create a writable layer on top of the image\'92s read-only layers. The writable layer will store any changes made to the container during the runtime.\
+Third, configure the container. Then the Docker daemon sets up the container\'92s network, storage, and other configuration settings, such as port bindings and environment variables, using the host system\'92s network and storage driver.\
+Fourth, start the container. Then the Docker daemon starts the container after the configuration is completed. The daemon forks a child process for the container using the `fork` command and execute the main process in the container using the `exec` command.\
+Fifth, container runtime operations. During the container runtime, all changes made to the container are stored in the pre-created writable layer using a layered view of the file system. The container process interacts with the host file system and other resources using the union file system, such as the AUFS.\
+Lastly, cache the image. The Docker daemon also caches images for future use. It aims to speed up the future usage by keeping images available offline. Layers in Docker images and containers are stored in the graph driver to allow layers to be shared between containers and reused for new containers.\
+\
 \
 \
 Question 4:\
