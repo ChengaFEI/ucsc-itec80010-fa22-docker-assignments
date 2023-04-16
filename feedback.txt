@@ -1,0 +1,21 @@
+ITEC.800.(10) Fall 2022
+Cheng Fei
+Grades
+HW 1: 15 pts
+HW 2: 15 pts
+HW 3: P1 = -0.5 pts No filter on nginx official images
+      P4 = -0.5 pts No HTML response from nginx container
+      P5 = -0.5 pts No good ps fax output
+      Total = 13.5 pts
+HW 4: Part 1 = 10 pts
+      Part 2 = 5 pts Dockerfile missing ENTRYPOINT command.  The docker-compose.yml is ok.      Total = 15 points
+HW 5: 20 pts
+Quiz: Q1 = 5 pts
+      Q2 = 5 pts
+      Q3 = 4 pts mostly okay, was looking for more a timeline of steps/interaction from client to dockerd to containerd to runc (with 2 paths; cached or via registery). You mentioned container vs image vs layer, but glossed over how union file system works (like what if same path/file is in two layers).
+      Q4 = 1 pt. I specifically asked not to use Swarm overlay commands.  Two valid approaches; mvlan and bridge with gateway containers.
+      Q5 = 1 pt. Docker secrets is a Swarm command. I asked you to use one of the methods discussed in clasee like passing via environment variables or mounting a tmpfs volume.
+      Total points = 16 points
+
+Grand total points = 94.5 out of 110 maximum = 85.9%
+
